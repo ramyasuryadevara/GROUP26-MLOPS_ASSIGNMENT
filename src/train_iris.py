@@ -51,7 +51,7 @@ def train_and_log_model(model, model_name):
 
         print(f"✅ {model_name} | Accuracy: {acc:.3f} | F1 Score: {f1:.3f} | Saved to models/{model_name}.pkl")
 
-        # Optional registration
+        # Optional registration select best
         if model_name == "RandomForest":
             mlflow.register_model(
                 model_uri=f"runs:/{run.info.run_id}/model",
