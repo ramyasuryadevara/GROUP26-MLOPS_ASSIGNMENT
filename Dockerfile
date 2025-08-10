@@ -22,10 +22,12 @@ RUN mkdir -p housinglogs
 RUN apt-get update && apt-get install -y sqlite3 gcc libffi-dev && pip install --no-cache-dir -r requirements.txt && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Expose FastAPI port
-EXPOSE 8000
+EXPOSE 8000 8501
 
 # Command to run the app
-CMD ["uvicorn", "api.housing_api:app", "--host", "0.0.0.0", "--port", "8000"]
+# CMD ["uvicorn", "api.housing_api:app", "--host", "0.0.0.0", "--port", "8000", "&", "streamlit", "run", "api/streamlit_housing.py"]
 
 # for the iris dataset use
 # CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+CMD ["sh", "-c", "uvicorn api.housing_api:app --host 0.0.0.0 --port 8000 & streamlit run api/streamlit_housing.py --server.address 0.0.0.0 --server.port 8501 && wait"]

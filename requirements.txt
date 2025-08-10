@@ -8,3 +8,4 @@ joblib
 pandas
 pydantic
 flake8
+streamlit

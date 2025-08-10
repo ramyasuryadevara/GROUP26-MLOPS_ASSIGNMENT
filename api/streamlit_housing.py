@@ -32,7 +32,7 @@ if st.button("Predict"):
     response = requests.post(API_URL, json=payload)
     
     if response.status_code == 200:
-        prediction = response.json().get("result")
+        prediction = response.json().get("predicted_price")
         st.success(f"Predicted Iris Species: {prediction}")
     else:
         st.error("Failed to get prediction from the backend")
